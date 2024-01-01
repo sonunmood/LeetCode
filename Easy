@@ -1,6 +1,35 @@
-Are strungs equal in sum
+//Are strungs equal in sum
 func arrayStringsAreEqual(_ word1: [String], _ word2: [String]) -> Bool {
         return word1.reduce("", +) == word2.reduce("", +)
 }
 
 print(arrayStringsAreEqual(["a", "b", "c"], ["ab", "cd"]))
+
+
+//Check if Word Equals Summation of Two Words
+class Solution {
+
+func validString(_ s: String) -> Bool {
+    let validLetters = Set("abcdefghij")
+    return s.allSatisfy { validLetters.contains($0)}
+}
+
+func numericalValue(_ s: String) -> Int {
+    guard validString(s) else { return 0 }
+    let number = Int(s.compactMap { Int($0.asciiValue! - Character("a").asciiValue!) }.map { String($0) }.joined()) ?? 0
+    return number
+}
+
+func isSumEqual(_ firstWord: String, _ secondWord: String, _ targetWord: String) -> Bool {
+    
+    let first = numericalValue(firstWord)
+    let second = numericalValue(secondWord)
+    let target = numericalValue(targetWord)
+    print(first)
+    print(second)
+    print(target)
+    
+    return first + second == target
+    
+    }
+}
