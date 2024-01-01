@@ -33,3 +33,46 @@ func isSumEqual(_ firstWord: String, _ secondWord: String, _ targetWord: String)
     
     }
 }
+
+//Valid Parentheses
+func isValid(_ s: String) -> Bool {
+    
+    var stack: [Character] = []
+    
+    for char in s {
+        if char == "(" || char == "{" || char == "[" {
+            stack.append(char)
+        } else {
+            if stack.isEmpty {
+                return false
+            }
+            
+            let lastChar = stack.popLast()
+            
+            switch char {
+            case "}":
+                
+                if lastChar != "{" {
+                    return false
+                }
+            case "]":
+                
+                if lastChar != "[" {
+                    return false
+                }
+            case ")":
+                if lastChar != "(" {
+                    return false
+                }
+            default:
+                
+                return false
+            }
+        }
+    }
+    
+    return stack.isEmpty
+}
+
+print(isValid("{([])"))
+
